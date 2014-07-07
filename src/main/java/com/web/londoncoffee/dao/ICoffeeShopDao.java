@@ -9,4 +9,10 @@ public interface ICoffeeShopDao {
 	public List<CoffeeShop> getCoffeeShopList();
 	
 	public CoffeeShop getCoffeeShop(int id);
+	
+	public void save(CoffeeShop coffeeShop);
+	
+	public void update(CoffeeShop coffeeShop);
+	
+	public void delete(int id);
 }

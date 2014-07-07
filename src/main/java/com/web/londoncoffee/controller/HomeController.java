@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +33,7 @@ public class HomeController {
 	@Autowired
 	private ICoffeeShopService coffeeShopService;
 	
-	@Resource(name="myCoffeeShopService")
+	@Resource(name="coffeeShopService")
 	public void setCoffeeShopService(ICoffeeShopService coffeeShopService){
 		this.coffeeShopService = coffeeShopService;
 	}
@@ -60,21 +62,6 @@ public class HomeController {
 		
 		List<CoffeeShop> coffeShopList = coffeeShopService.getCoffeeShopList();
 		
-		//-------------------------- sil --------------------------------
-		/*CoffeeShop cof = new CoffeeShop();
-		cof.setName("Prufrock");
-		cof.setRating(4.4);
-		cof.setWebAddress("www.prufrock.co.uk");
-		coffeShopList = new ArrayList<CoffeeShop>();
-		coffeShopList.add(cof);
-		
-		cof = new CoffeeShop();
-		cof.setName("Kaffeine");
-		cof.setRating(4.6);
-		cof.setWebAddress("www.kaffeine.co.uk");
-		coffeShopList.add(cof);*/
-		//----------------------------------------------------------------
-		
 		model.addAttribute("COFFEESHOP_LIST", coffeShopList);
 		
 		return "coffeeShopList";
@@ -84,21 +71,25 @@ public class HomeController {
 	@RequestMapping(value = "/venue/{coffeeshopId}", method = RequestMethod.GET)
 	public String getCoffeeShop(@PathVariable int coffeeshopId, ModelMap model) {
 		logger.info("Coffee Shop!");
-	/*
+	
 		CoffeeShop coffeShop = coffeeShopService.getCoffeeShop(coffeeshopId);
 		
-		//-------------------------- sil --------------------------------
-		coffeShop = new CoffeeShop();
-		coffeShop.setName("Prufrock");
-		coffeShop.setRating(4.4);
-		coffeShop.setWebAddress("www.prufrock.co.uk");
-		
-		//----------------------------------------------------------------
-		
-				
 		model.addAttribute("COFFEESHOP", coffeShop);
-		*/
+		
 		return "venue";
+	}
+
+	@RequestMapping(value = "/venue", method = RequestMethod.PUT)
+	public String saveCoffeeShop(@ModelAttribute("coffeeShop") CoffeeShop coffeeShop, BindingResult result) {
+		logger.info("Coffee Shop to save:" + coffeeShop.getName());
+	
+		coffeeShop.setName("Artisan");
+		coffeeShop.setRating(4.4);
+		coffeeShop.setWebAddress("www.artisan.coffee");
+		
+		coffeeShopService.save(coffeeShop);
+		
+		return "saved";
 	}
 	
 }

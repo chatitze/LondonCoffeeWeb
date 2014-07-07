@@ -54,7 +54,8 @@
 	</beans:bean>
 	
 	  <!-- Hibernate Session Factory -->
-  <beans:bean id="mySessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	  
+  <beans:bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
     <beans:property name="dataSource" ref="myDataSource"/>
     
     <beans:property name="packagesToScan">
@@ -77,11 +78,20 @@
     </beans:property>
     
   </beans:bean>
+  
+  <!-- <beans:bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<beans:property name="dataSource" ref="myDataSource" />
+	<beans:property name="annotatedClasses">
+		<beans:list>
+			<beans:value>com.web.londoncoffee.model.CoffeeShop</beans:value>
+    	</beans:list>
+    </beans:property>
+ </beans:bean> -->
 
   
   <!-- Hibernate Transaction Manager -->
   <beans:bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-    <beans:property name="sessionFactory" ref="mySessionFactory"/>
+    <beans:property name="sessionFactory" ref="sessionFactory"/>
     <beans:property name="dataSource" ref="myDataSource" />
   </beans:bean>
    

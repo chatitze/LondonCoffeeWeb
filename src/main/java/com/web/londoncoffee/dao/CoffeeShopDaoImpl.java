@@ -2,8 +2,8 @@ package com.web.londoncoffee.dao;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -22,7 +22,7 @@ public class CoffeeShopDaoImpl implements ICoffeeShopDao{
 	public CoffeeShopDaoImpl(SessionFactory sessionFactory){
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	@Override
 	public List<CoffeeShop> getCoffeeShopList(){
 		
@@ -40,7 +40,28 @@ public class CoffeeShopDaoImpl implements ICoffeeShopDao{
 
 	@Override
 	public CoffeeShop getCoffeeShop(int id) {
-		return null;
+		return (CoffeeShop) sessionFactory.getCurrentSession()
+				.createCriteria(CoffeeShop.class)
+				.add(Restrictions.idEq(id))
+				.uniqueResult();
+	}
+
+	@Override
+	public void save(CoffeeShop coffeeShop) {
+		sessionFactory.getCurrentSession().persist(coffeeShop);
+		
+	}
+
+	@Override
+	public void update(CoffeeShop coffeeShop) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(int id) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

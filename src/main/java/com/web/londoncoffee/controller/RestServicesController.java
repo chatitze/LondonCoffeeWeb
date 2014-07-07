@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,13 +14,14 @@ import com.web.londoncoffee.model.CoffeeShop;
 import com.web.londoncoffee.service.ICoffeeShopService;
 
 @Controller
-public class CoffeeVenuesController {
+public class RestServicesController {
 
-	private static final Logger logger = LoggerFactory.getLogger(CoffeeVenuesController.class);
+	private static final Logger logger = LoggerFactory.getLogger(RestServicesController.class);
 	
+	@Autowired
 	private ICoffeeShopService coffeeShopService;
 	
-	@Resource(name="myCoffeeShopService")
+	@Resource(name="coffeeShopService")
 	public void setCoffeeShopService(ICoffeeShopService coffeeShopService){
 		this.coffeeShopService = coffeeShopService;
 	}
@@ -30,16 +32,6 @@ public class CoffeeVenuesController {
 		
 		CoffeeShop coffeShop = coffeeShopService.getCoffeeShop(5);
 		
-		//-------------------------- sil --------------------------------
-		coffeShop = new CoffeeShop();
-		coffeShop.setName("Prufrock");
-		coffeShop.setRating(4.4);
-		coffeShop.setWebAddress("www.prufrock.co.uk");
-		
-		//----------------------------------------------------------------
-				
-		
 		return coffeShop;
 	}
-	
 }
