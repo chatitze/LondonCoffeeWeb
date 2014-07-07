@@ -5,8 +5,9 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
-	<bean id="myCoffeeShopService" class="com.web.londoncoffee.service.impl.CoffeeShopServiceImpl">
+	<bean id="myCoffeeShopService" class="com.web.londoncoffee.service.CoffeeShopServiceImpl">
 		<property name="coffeeShopDao" ref="myCoffeeShopDao"/>
 	</bean>	
-	<bean id="myCoffeeShopDao" class="com.web.londoncoffee.dao.impl.CoffeeShopDaoImpl"/>	
+	<bean id="myCoffeeShopDao" class="com.web.londoncoffee.dao.CoffeeShopDaoImpl"/>	
+	
 </beans>

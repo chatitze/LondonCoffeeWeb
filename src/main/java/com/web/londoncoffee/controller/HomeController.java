@@ -1,7 +1,6 @@
 package com.web.londoncoffee.controller;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -10,6 +9,7 @@ import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -28,12 +28,14 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Autowired
 	private ICoffeeShopService coffeeShopService;
 	
 	@Resource(name="myCoffeeShopService")
 	public void setCoffeeShopService(ICoffeeShopService coffeeShopService){
 		this.coffeeShopService = coffeeShopService;
 	}
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -59,7 +61,7 @@ public class HomeController {
 		List<CoffeeShop> coffeShopList = coffeeShopService.getCoffeeShopList();
 		
 		//-------------------------- sil --------------------------------
-		CoffeeShop cof = new CoffeeShop();
+		/*CoffeeShop cof = new CoffeeShop();
 		cof.setName("Prufrock");
 		cof.setRating(4.4);
 		cof.setWebAddress("www.prufrock.co.uk");
@@ -70,7 +72,7 @@ public class HomeController {
 		cof.setName("Kaffeine");
 		cof.setRating(4.6);
 		cof.setWebAddress("www.kaffeine.co.uk");
-		coffeShopList.add(cof);
+		coffeShopList.add(cof);*/
 		//----------------------------------------------------------------
 		
 		model.addAttribute("COFFEESHOP_LIST", coffeShopList);
@@ -82,7 +84,7 @@ public class HomeController {
 	@RequestMapping(value = "/venue/{coffeeshopId}", method = RequestMethod.GET)
 	public String getCoffeeShop(@PathVariable int coffeeshopId, ModelMap model) {
 		logger.info("Coffee Shop!");
-	
+	/*
 		CoffeeShop coffeShop = coffeeShopService.getCoffeeShop(coffeeshopId);
 		
 		//-------------------------- sil --------------------------------
@@ -95,7 +97,7 @@ public class HomeController {
 		
 				
 		model.addAttribute("COFFEESHOP", coffeShop);
-		
+		*/
 		return "venue";
 	}
 	
