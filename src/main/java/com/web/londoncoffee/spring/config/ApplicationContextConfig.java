@@ -28,7 +28,10 @@ import com.web.londoncoffee.dao.ICoffeeShopDao;
 import com.web.londoncoffee.model.CoffeeShop;
 import com.web.londoncoffee.service.CoffeeShopServiceImpl;
 import com.web.londoncoffee.service.ICoffeeShopService;
-
+/**
+ * @author Chatitze Moumin
+ *
+ */
 @Configuration
 @ComponentScan("com.web.londoncoffee")
 //Enables Spring's annotations 

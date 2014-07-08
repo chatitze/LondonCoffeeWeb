@@ -8,7 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.web.londoncoffee.dao.ICoffeeShopDao;
 import com.web.londoncoffee.model.CoffeeShop;
-
+/**
+ * @author Chatitze Moumin
+ *
+ */
 @Service
 public class CoffeeShopServiceImpl implements ICoffeeShopService{
 

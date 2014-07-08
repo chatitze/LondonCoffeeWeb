@@ -9,7 +9,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-
+/**
+ * @author Chatitze Moumin
+ *
+ */
 @Entity
 public class CoffeeShop implements Serializable{
 

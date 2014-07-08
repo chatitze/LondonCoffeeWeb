@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.web.londoncoffee.model.CoffeeShop;
-
+/**
+ * @author Chatitze Moumin
+ *
+ */
 @Repository
 public class CoffeeShopDaoImpl implements ICoffeeShopDao{
 
@@ -54,14 +57,15 @@ public class CoffeeShopDaoImpl implements ICoffeeShopDao{
 
 	@Override
 	public void update(CoffeeShop coffeeShop) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().update(coffeeShop);
 		
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		CoffeeShop shopToDelete = new CoffeeShop();
+		shopToDelete.setId(id);
+		sessionFactory.getCurrentSession().delete(shopToDelete);		
 	}
 	
 	

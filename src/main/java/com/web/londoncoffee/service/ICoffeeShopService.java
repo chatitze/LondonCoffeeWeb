@@ -3,7 +3,10 @@ package com.web.londoncoffee.service;
 import java.util.List;
 
 import com.web.londoncoffee.model.CoffeeShop;
-
+/**
+ * @author Chatitze Moumin
+ *
+ */
 public interface ICoffeeShopService {
 
 	public List<CoffeeShop> getCoffeeShopList();

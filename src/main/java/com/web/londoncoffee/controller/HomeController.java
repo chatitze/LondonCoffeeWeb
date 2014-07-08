@@ -1,5 +1,8 @@
 package com.web.londoncoffee.controller;
-
+/**
+ * @author Chatitze Moumin
+ *
+ */
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
@@ -56,6 +59,25 @@ public class HomeController {
 		return "home";
 	}
 	
+	/**
+	 * GET Coffee Shop details
+	 * @return coffee shop details with specified id
+	 */
+	@RequestMapping(value = "/venue/{coffeeshopId}", method = RequestMethod.GET)
+	public String getCoffeeShop(@PathVariable int coffeeshopId, ModelMap model) {
+		logger.info("Coffee Shop!");
+	
+		CoffeeShop coffeShop = coffeeShopService.getCoffeeShop(coffeeshopId);
+		
+		model.addAttribute("COFFEESHOP", coffeShop);
+		
+		return "venue";
+	}
+	
+	/**
+	 * GET Coffee Shops List
+	 * @return all the coffee shops
+	 */
 	@RequestMapping(value = "/venuelist", method = RequestMethod.GET)
 	public String getCoffeeShopList(Locale locale, Model model) {
 		logger.info("Coffee Shop List!");
@@ -67,21 +89,12 @@ public class HomeController {
 		return "coffeeShopList";
 	}
 	
-	
-	@RequestMapping(value = "/venue/{coffeeshopId}", method = RequestMethod.GET)
-	public String getCoffeeShop(@PathVariable int coffeeshopId, ModelMap model) {
-		logger.info("Coffee Shop!");
-	
-		CoffeeShop coffeShop = coffeeShopService.getCoffeeShop(coffeeshopId);
-		
-		model.addAttribute("COFFEESHOP", coffeShop);
-		
-		return "venue";
-	}
-
-	@RequestMapping(value = "/venue", method = RequestMethod.PUT)
+	/**
+	 * Add a new coffee shop
+	 */
+	@RequestMapping(value = "/venue", method = RequestMethod.POST)
 	public String saveCoffeeShop(@ModelAttribute("coffeeShop") CoffeeShop coffeeShop, BindingResult result) {
-		logger.info("Coffee Shop to save:" + coffeeShop.getName());
+		logger.info("Coffee Shop to add:" + coffeeShop.getName());
 	
 		coffeeShop.setName("Artisan");
 		coffeeShop.setRating(4.4);
@@ -91,5 +104,4 @@ public class HomeController {
 		
 		return "saved";
 	}
-	
 }
