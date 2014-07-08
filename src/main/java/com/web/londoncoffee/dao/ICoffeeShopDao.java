@@ -13,7 +13,7 @@ public interface ICoffeeShopDao {
 	
 	public CoffeeShop getCoffeeShop(int id);
 	
-	public void save(CoffeeShop coffeeShop);
+	public int save(CoffeeShop coffeeShop);
 	
 	public void update(CoffeeShop coffeeShop);
 	

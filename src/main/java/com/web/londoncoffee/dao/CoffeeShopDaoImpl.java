@@ -50,9 +50,10 @@ public class CoffeeShopDaoImpl implements ICoffeeShopDao{
 	}
 
 	@Override
-	public void save(CoffeeShop coffeeShop) {
+	public int save(CoffeeShop coffeeShop) {
 		sessionFactory.getCurrentSession().persist(coffeeShop);
-		
+
+		return coffeeShop.getId();
 	}
 
 	@Override

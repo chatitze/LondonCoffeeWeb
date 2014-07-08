@@ -46,8 +46,8 @@ public class CoffeeShopServiceImpl implements ICoffeeShopService{
 
 	@Override
 	@Transactional
-	public void save(CoffeeShop coffeeShop) {
-		coffeeShopDao.save(coffeeShop);
+	public int save(CoffeeShop coffeeShop) {
+		return coffeeShopDao.save(coffeeShop);
 		
 	}
 
