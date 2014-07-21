@@ -26,7 +26,7 @@ import com.web.londoncoffee.service.ICoffeeShopService;
 @RequestMapping("/rest")
 public class CoffeeShopController {
 
-	private static final Logger logger = LoggerFactory.getLogger(CoffeeShopControllerTest.class);
+	private static final Logger logger = LoggerFactory.getLogger(CoffeeShopController.class);
 	
 	@Autowired
 	private ICoffeeShopService coffeeShopService;
@@ -41,7 +41,7 @@ public class CoffeeShopController {
 	 * @return coffee shop details with specified id
 	 */
 	@RequestMapping(value = "/venue/{coffeeshopId}", method = RequestMethod.GET, headers="accept=application/json")
-	public @ResponseBody CoffeeShop getVenue(@PathVariable int coffeeshopId) {
+	public @ResponseBody CoffeeShop getCoffeeShop(@PathVariable int coffeeshopId) {
 		logger.info("Coffee Shop!");
 		
 		CoffeeShop coffeShop = coffeeShopService.getCoffeeShop(coffeeshopId);

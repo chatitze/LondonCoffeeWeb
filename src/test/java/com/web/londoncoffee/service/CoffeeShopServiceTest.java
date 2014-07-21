@@ -1,11 +1,12 @@
 package com.web.londoncoffee.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.anyInt;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,15 +44,15 @@ public class CoffeeShopServiceTest {
 		// specify mock behave when method called
 		Mockito.when(coffeeShopDaoMock.getCoffeeShop(anyInt())).thenReturn(new CoffeeShop("testCoffeeShopName", (float) 4.0, "www.testwebaddress.com"));
          
-		Assert.assertNotNull(coffeeShopService);
+		assertNotNull(coffeeShopService);
         CoffeeShop testShop = coffeeShopService.getCoffeeShop(5);
         
         //Verify the invocation of the stub
         Mockito.verify(coffeeShopDaoMock).getCoffeeShop(anyInt());
 
-        Assert.assertEquals("Get Coffee Shop with id test failed!", "testCoffeeShopName", testShop.getName());
-        Assert.assertEquals(4.0, testShop.getRating(), 0);
-        Assert.assertEquals("Get Coffee Shop with id test failed!", "www.testwebaddress.com", testShop.getWebAddress());
+        assertEquals("Get Coffee Shop with id test failed!", "testCoffeeShopName", testShop.getName());
+        assertEquals(4.0, testShop.getRating(), 0);
+        assertEquals("Get Coffee Shop with id test failed!", "www.testwebaddress.com", testShop.getWebAddress());
 
 	}
 	
@@ -67,21 +68,21 @@ public class CoffeeShopServiceTest {
 		// specify mock behave when method called
 		Mockito.when(coffeeShopDaoMock.getCoffeeShopList()).thenReturn(shopList);
          
-		Assert.assertNotNull(coffeeShopService);
+		assertNotNull(coffeeShopService);
 		List<CoffeeShop> testShopList = coffeeShopService.getCoffeeShopList();
         
         //Verify the invocation of the stub
         Mockito.verify(coffeeShopDaoMock).getCoffeeShopList();
 
-        Assert.assertEquals("Get Coffee Shop List test failed!", 2, testShopList.size());
+        assertEquals("Get Coffee Shop List test failed!", 2, testShopList.size());
         // First coffee shop
-        Assert.assertEquals("Get Coffee Shop List test failed!", "testCoffeeShopName1", testShopList.get(0).getName());
-        Assert.assertEquals(4.0, testShopList.get(0).getRating(), 0.0);
-        Assert.assertEquals("Get Coffee Shop List test failed!", "www.testwebaddress1.com", testShopList.get(0).getWebAddress());
+        assertEquals("Get Coffee Shop List test failed!", "testCoffeeShopName1", testShopList.get(0).getName());
+        assertEquals(4.0, testShopList.get(0).getRating(), 0.0);
+        assertEquals("Get Coffee Shop List test failed!", "www.testwebaddress1.com", testShopList.get(0).getWebAddress());
         // Second coffee shop
-        Assert.assertEquals("Get Coffee Shop List test failed!", "testCoffeeShopName2", testShopList.get(1).getName());
-        Assert.assertEquals(3.0, testShopList.get(1).getRating(), 0);
-        Assert.assertEquals("Get Coffee Shop List test failed!", "www.testwebaddress2.com", testShopList.get(1).getWebAddress());
+        assertEquals("Get Coffee Shop List test failed!", "testCoffeeShopName2", testShopList.get(1).getName());
+        assertEquals(3.0, testShopList.get(1).getRating(), 0);
+        assertEquals("Get Coffee Shop List test failed!", "www.testwebaddress2.com", testShopList.get(1).getWebAddress());
 	}
 
 	@Test
@@ -92,13 +93,13 @@ public class CoffeeShopServiceTest {
 		  
 		CoffeeShop newShop = new CoffeeShop("newShopName", (float) 4.0, "www.newshopaddress.com");
 	
-		Assert.assertNotNull(coffeeShopService);
+		assertNotNull(coffeeShopService);
 		int shopId = coffeeShopService.save(newShop);
 		
 		//Verify the invocation of the stub
         Mockito.verify(coffeeShopDaoMock).save(Mockito.any(CoffeeShop.class));
         
-        Assert.assertEquals("Add New Coffee Shop test failed!", 1, shopId);      
+        assertEquals("Add New Coffee Shop test failed!", 1, shopId);      
 	}
 	
 	@Test
@@ -107,7 +108,7 @@ public class CoffeeShopServiceTest {
 		CoffeeShop updateShop = new CoffeeShop("updateShopName", (float) 4.0, "www.updateshopaddress.com");
 		updateShop.setId(1);
 		
-		Assert.assertNotNull(coffeeShopService);
+		assertNotNull(coffeeShopService);
 		coffeeShopService.update(updateShop);
 		
 		//Verify the invocation of the stub
@@ -117,7 +118,7 @@ public class CoffeeShopServiceTest {
 	@Test
 	public void deleteCoffeeShopTest() {
 		
-		Assert.assertNotNull(coffeeShopService);
+		assertNotNull(coffeeShopService);
 		coffeeShopService.delete(1);
 		
 		//Verify the invocation of the stub
