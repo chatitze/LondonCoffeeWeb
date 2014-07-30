@@ -19,6 +19,8 @@
      <br/>
      Location:  ${COFFEESHOP.location}
      <br/>
-     City:  ${COFFEESHOP.location.city}</P>
+     City:  ${COFFEESHOP.location.city}
+     <br/>
+     Social Media:  ${COFFEESHOP.socialMedia}</P>
 </body>
 </html>

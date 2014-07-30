@@ -60,13 +60,25 @@ public class Location implements Serializable{
 	public Location() {
         super();
     }
-	// create and initialize a point with given name and
-    // (latitude, longitude) specified in degree
-    public Location(String name, double latitude, double longitude) {
-        this.lat  = latitude;
-        this.lng = longitude;
-    }
     
+	public Location(double lat, double lng, String address, String city,
+			String state, String postalCode, String country, String cc,
+			String crossStreet, CoffeeShop coffeeShop) {
+		super();
+		this.lat = lat;
+		this.lng = lng;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.postalCode = postalCode;
+		this.country = country;
+		this.cc = cc;
+		this.crossStreet = crossStreet;
+		this.coffeeShop = coffeeShop;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}

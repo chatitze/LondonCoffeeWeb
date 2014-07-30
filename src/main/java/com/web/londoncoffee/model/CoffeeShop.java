@@ -1,15 +1,12 @@
 package com.web.londoncoffee.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 
@@ -55,13 +52,13 @@ public class CoffeeShop implements Serializable{
 	
 	@Column(name = "grinder")
 	private String grinder;
-	
+
 	@OneToOne
 	//@OneToOne(mappedBy="coffeeshop", cascade=CascadeType.ALL)
 	private Location location;
 
-	//@OneToOne
-	//private SocialMedia socialMedia;
+	@OneToOne
+	private SocialMedia socialMedia;
 	
 	//@OneToMany
 	//private List<Review> review;
@@ -71,18 +68,27 @@ public class CoffeeShop implements Serializable{
 		
 	}
 	
-	public CoffeeShop(String coffeeName, double rating, String webAddress, String iconUrl, int priceLevel,
-			String openningHours, String phoneNumber, Location location) {
-		this.name=coffeeName;
-		this.rating=rating;
-		this.webAddress=webAddress;
-		this.iconUrl=iconUrl;
-		this.priceLevel=priceLevel;
-		this.openningHours=openningHours;
-		this.phoneNumber=phoneNumber;
-		this.location=location;
+	public CoffeeShop(String name, double rating, String webAddress,
+			String iconUrl, int priceLevel, String openningHours,
+			String phoneNumber, String beans, String machine, String grinder,
+			Location location, SocialMedia socialMedia) {
+		super();
+		this.name = name;
+		this.rating = rating;
+		this.webAddress = webAddress;
+		this.iconUrl = iconUrl;
+		this.priceLevel = priceLevel;
+		this.openningHours = openningHours;
+		this.phoneNumber = phoneNumber;
+		this.beans = beans;
+		this.machine = machine;
+		this.grinder = grinder;
+		this.location = location;
+		this.socialMedia = socialMedia;
 	}
-	
+
+
+
 	@Override
 	public String toString() {
 		return "CoffeeShop [name=" + name + ", rating=" + rating
@@ -183,4 +189,11 @@ public class CoffeeShop implements Serializable{
 		this.location = location;
 	}
 	
+	public SocialMedia getSocialMedia() {
+		return socialMedia;
+	}
+
+	public void setSocialMedia(SocialMedia socialMedia) {
+		this.socialMedia = socialMedia;
+	}
 }

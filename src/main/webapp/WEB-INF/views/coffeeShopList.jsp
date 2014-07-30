@@ -13,6 +13,7 @@
 			<td> ${coffeeShops.webAddress} </td>
 			<td> ${coffeeShops.location} </td>
 			<td> ${coffeeShops.location.city} </td>
+			<td> ${coffeeShops.socialMedia.facebook} </td>
 		</tr>
 	</c:forEach>
 </table>
