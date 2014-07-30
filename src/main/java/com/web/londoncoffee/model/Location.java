@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Transient;
 
 /**
  * @author Chatitze Moumin
@@ -51,7 +52,8 @@ public class Location implements Serializable{
 	@Column(name = "crossStreet")
 	private String crossStreet;
 	
-	//private double distance;
+	@Transient
+	private double distance;
 
 	@OneToOne
     @PrimaryKeyJoinColumn
@@ -118,11 +120,11 @@ public class Location implements Serializable{
 	public double getLng() {
 		return lng;
 	}
-/*
+
 	public double getDistance() {
 		return distance;
 	}
-*/
+
 	public String getCc() {
 		return cc;
 	}
@@ -158,11 +160,11 @@ public class Location implements Serializable{
 	public void setLng(double lng) {
 		this.lng = lng;
 	}
-/*
+
 	public void setDistance(double distance) {
 		this.distance = distance;
 	}
-*/
+
 	public void setCrossStreet(String crossStreet) {
 		this.crossStreet = crossStreet;
 	}	

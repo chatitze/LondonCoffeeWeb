@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.web.londoncoffee.model.CoffeeReviews;
 import com.web.londoncoffee.model.CoffeeShop;
+import com.web.londoncoffee.service.ICoffeeReviewsService;
 import com.web.londoncoffee.service.ICoffeeShopService;
 import com.web.londoncoffee.service.ILocationService;
+import com.web.londoncoffee.service.IReviewService;
 import com.web.londoncoffee.service.ISocialMediaService;
 
 /**
@@ -39,6 +42,12 @@ public class CoffeeShopController {
 	@Autowired
 	private ISocialMediaService socialMediaService;
 	
+	@Autowired
+	private IReviewService reviewService;
+	
+	@Autowired
+	private ICoffeeReviewsService coffeeReviewsService;
+	
 	@Resource(name="coffeeShopService")
 	public void setCoffeeShopService(ICoffeeShopService coffeeShopService){
 		this.coffeeShopService = coffeeShopService;
@@ -52,6 +61,16 @@ public class CoffeeShopController {
 	@Resource(name="socialMediaService")
 	public void setSocialMediaService(ISocialMediaService socialMediaService){
 		this.socialMediaService = socialMediaService;
+	}
+	
+	@Resource(name="reviewService")
+	public void setReviewService(IReviewService reviewService){
+		this.reviewService = reviewService;
+	}
+	
+	@Resource(name="coffeeReviewsService")
+	public void setCoffeeReviewsService(ICoffeeReviewsService coffeeReviewsService){
+		this.coffeeReviewsService = coffeeReviewsService;
 	}
 	
 	/**
@@ -80,6 +99,19 @@ public class CoffeeShopController {
 		return coffeShopList;
 	}
 
+	/**
+	 * GET Coffee Shops Reviews
+	 * @return all reviews for a given coffee shops
+	 */
+	@RequestMapping(value = "/venueReviews/{coffeeshopId}", method = RequestMethod.GET)
+	public @ResponseBody List<CoffeeReviews> getCoffeeReviewsList(@PathVariable int coffeeShopId) {
+		logger.info("Coffee Shop Reviews!");
+		
+		List<CoffeeReviews> coffeReviewsList = coffeeReviewsService.getCoffeeReviewList(coffeeShopId);
+		
+		return coffeReviewsList;
+	}
+	
 	/**
 	 * Add a new coffee shop
 	 */

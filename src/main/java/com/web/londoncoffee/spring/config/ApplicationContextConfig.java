@@ -18,20 +18,30 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.web.londoncoffee.dao.CoffeeReviewsDaoImpl;
 import com.web.londoncoffee.dao.CoffeeShopDaoImpl;
+import com.web.londoncoffee.dao.ICoffeeReviewsDao;
 import com.web.londoncoffee.dao.ICoffeeShopDao;
 import com.web.londoncoffee.dao.ILocationDao;
+import com.web.londoncoffee.dao.IReviewDao;
 import com.web.londoncoffee.dao.ISocialMediaDao;
 import com.web.londoncoffee.dao.LocationDaoImpl;
+import com.web.londoncoffee.dao.ReviewDaoImpl;
 import com.web.londoncoffee.dao.SocialMediaDaoImpl;
+import com.web.londoncoffee.model.CoffeeReviews;
 import com.web.londoncoffee.model.CoffeeShop;
 import com.web.londoncoffee.model.Location;
+import com.web.londoncoffee.model.Review;
 import com.web.londoncoffee.model.SocialMedia;
+import com.web.londoncoffee.service.CoffeeReviewsServiceImpl;
 import com.web.londoncoffee.service.CoffeeShopServiceImpl;
+import com.web.londoncoffee.service.ICoffeeReviewsService;
 import com.web.londoncoffee.service.ICoffeeShopService;
 import com.web.londoncoffee.service.ILocationService;
+import com.web.londoncoffee.service.IReviewService;
 import com.web.londoncoffee.service.ISocialMediaService;
 import com.web.londoncoffee.service.LocationServiceImpl;
+import com.web.londoncoffee.service.ReviewServiceImpl;
 import com.web.londoncoffee.service.SocialMediaServiceImpl;
 /**
  * @author Chatitze Moumin
@@ -91,6 +101,8 @@ public class ApplicationContextConfig {
     	sessionBuilder.addAnnotatedClasses(CoffeeShop.class);
     	sessionBuilder.addAnnotatedClasses(Location.class);
     	sessionBuilder.addAnnotatedClasses(SocialMedia.class);
+    	sessionBuilder.addAnnotatedClasses(Review.class);
+    	sessionBuilder.addAnnotatedClasses(CoffeeReviews.class);
     	return sessionBuilder.buildSessionFactory();
     }
 
@@ -161,5 +173,29 @@ public class ApplicationContextConfig {
     @Bean(name = "socialMediaService")
     public ISocialMediaService getSocialMediaService(ISocialMediaDao socialMediaDao) {
     	return new SocialMediaServiceImpl(socialMediaDao);
+    }
+    
+    @Autowired
+    @Bean(name = "reviewDao")
+    public IReviewDao getReviewDao(SessionFactory sessionFactory) {
+    	return new ReviewDaoImpl(sessionFactory);
+    }
+    
+    @Autowired
+    @Bean(name = "reviewService")
+    public IReviewService getReviewService(IReviewDao reviewDao) {
+    	return new ReviewServiceImpl(reviewDao);
+    }
+    
+    @Autowired
+    @Bean(name = "coffeeReviewsDao")
+    public ICoffeeReviewsDao getCoffeeReviewsDao(SessionFactory sessionFactory) {
+    	return new CoffeeReviewsDaoImpl(sessionFactory);
+    }
+    
+    @Autowired
+    @Bean(name = "coffeeReviewsService")
+    public ICoffeeReviewsService getCoffeeReviewsService(ICoffeeReviewsDao coffeeReviewsDao) {
+    	return new CoffeeReviewsServiceImpl(coffeeReviewsDao);
     }
 }

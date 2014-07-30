@@ -21,6 +21,18 @@
      <br/>
      City:  ${COFFEESHOP.location.city}
      <br/>
-     Social Media:  ${COFFEESHOP.socialMedia}</P>
+     Social Media:  ${COFFEESHOP.socialMedia}
+</P>
+
+<table>
+	<c:forEach var="coffeeReviews" items="${COFFEEREVIEW_LIST}" >
+		<tr>
+			<td> ${coffeeReviews.review.source} </td>
+			<td> ${coffeeReviews.review.sourceAddress} </td>
+			<td> ${coffeeReviews.review.review} </td>
+		</tr>
+	</c:forEach>
+</table>
+     
 </body>
 </html>

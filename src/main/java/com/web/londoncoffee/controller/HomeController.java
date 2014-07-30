@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.web.londoncoffee.model.CoffeeReviews;
 import com.web.londoncoffee.model.CoffeeShop;
+import com.web.londoncoffee.service.ICoffeeReviewsService;
 import com.web.londoncoffee.service.ICoffeeShopService;
 
 /**
@@ -36,11 +38,18 @@ public class HomeController {
 	@Autowired
 	private ICoffeeShopService coffeeShopService;
 	
+	@Autowired
+	private ICoffeeReviewsService coffeeReviewsService;
+	
 	@Resource(name="coffeeShopService")
 	public void setCoffeeShopService(ICoffeeShopService coffeeShopService){
 		this.coffeeShopService = coffeeShopService;
 	}
 	
+	@Resource(name="coffeeReviewsService")
+	public void setCoffeeReviewsService(ICoffeeReviewsService coffeeReviewsService){
+		this.coffeeReviewsService = coffeeReviewsService;
+	}
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -69,8 +78,10 @@ public class HomeController {
 	
 		CoffeeShop coffeShop = coffeeShopService.getCoffeeShop(coffeeshopId);
 		
-		model.addAttribute("COFFEESHOP", coffeShop);
+		List<CoffeeReviews> coffeReviewsList = coffeeReviewsService.getCoffeeReviewList(coffeeshopId);
 		
+		model.addAttribute("COFFEESHOP", coffeShop);
+		model.addAttribute("COFFEEREVIEW_LIST", coffeReviewsList);
 		return "venue";
 	}
 	
