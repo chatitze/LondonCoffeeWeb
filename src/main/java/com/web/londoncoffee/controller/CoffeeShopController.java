@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.web.londoncoffee.model.CoffeeShop;
 import com.web.londoncoffee.service.ICoffeeShopService;
+import com.web.londoncoffee.service.ILocationService;
 
 /**
  * @author Chatitze Moumin
@@ -31,9 +32,17 @@ public class CoffeeShopController {
 	@Autowired
 	private ICoffeeShopService coffeeShopService;
 	
+	@Autowired
+	private ILocationService locationService;
+	
 	@Resource(name="coffeeShopService")
 	public void setCoffeeShopService(ICoffeeShopService coffeeShopService){
 		this.coffeeShopService = coffeeShopService;
+	}
+	
+	@Resource(name="locationService")
+	public void setLocationService(ILocationService locationService){
+		this.locationService = locationService;
 	}
 	
 	/**

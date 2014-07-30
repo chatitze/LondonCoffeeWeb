@@ -1,12 +1,16 @@
 package com.web.londoncoffee.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 /**
@@ -28,19 +32,55 @@ public class CoffeeShop implements Serializable{
 	@Column(name = "rating")
 	private double rating;
 	
-	@Column(name = "web")
+	@Column(name = "webAddress")
 	private String webAddress;
 	
+	@Column(name = "iconUrl")
+	private String iconUrl;
 	
+	@Column(name = "priceLevel")
+	private int priceLevel;
+
+	@Column(name = "openningHours")
+	private String openningHours;
+
+	@Column(name = "phoneNumber")
+	private String phoneNumber;
+	
+	@Column(name = "beans")
+	private String beans;
+	
+	@Column(name = "machine")
+	private String machine;
+	
+	@Column(name = "grinder")
+	private String grinder;
+	
+	@OneToOne
+	//@OneToOne(mappedBy="coffeeshop", cascade=CascadeType.ALL)
+	private Location location;
+
+	//@OneToOne
+	//private SocialMedia socialMedia;
+	
+	//@OneToMany
+	//private List<Review> review;
+			
 	public CoffeeShop() {
 		super();
 		
 	}
 	
-	public CoffeeShop(String coffeeName, float rating, String webAddress) {
+	public CoffeeShop(String coffeeName, double rating, String webAddress, String iconUrl, int priceLevel,
+			String openningHours, String phoneNumber, Location location) {
 		this.name=coffeeName;
 		this.rating=rating;
 		this.webAddress=webAddress;
+		this.iconUrl=iconUrl;
+		this.priceLevel=priceLevel;
+		this.openningHours=openningHours;
+		this.phoneNumber=phoneNumber;
+		this.location=location;
 	}
 	
 	@Override
@@ -110,6 +150,37 @@ public class CoffeeShop implements Serializable{
 	}
 	public void setWebAddress(String webAddress) {
 		this.webAddress = webAddress;
+	}
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
+
+	public int getPriceLevel() {
+		return priceLevel;
+	}
+
+	public void setPriceLevel(int priceLevel) {
+		this.priceLevel = priceLevel;
+	}
+
+	public String getOpenningHours() {
+		return openningHours;
+	}
+
+	public void setOpenningHours(String openningHours) {
+		this.openningHours = openningHours;
+	}
+	
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 	
 }

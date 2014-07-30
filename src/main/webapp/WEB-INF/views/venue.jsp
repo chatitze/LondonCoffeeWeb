@@ -10,8 +10,15 @@
 </h1>
 
 <P>  Current venue is:
+	<br/>
      Name: ${COFFEESHOP.name}
+     <br/>
      Rating:  ${COFFEESHOP.rating}
-     Web:  ${COFFEESHOP.webAddress}</P>
+     <br/>
+     Web:  ${COFFEESHOP.webAddress}
+     <br/>
+     Location:  ${COFFEESHOP.location}
+     <br/>
+     City:  ${COFFEESHOP.location.city}</P>
 </body>
 </html>

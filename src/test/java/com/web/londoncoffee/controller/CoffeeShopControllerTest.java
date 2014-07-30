@@ -57,7 +57,8 @@ public class CoffeeShopControllerTest {
 		// specify mock behave when method called
 		//Mockito.when(coffeeShopService.getCoffeeShop(anyInt())).thenReturn(new CoffeeShop("testCoffeeShopName", (float) 4.0, "www.testwebaddress.com"));
 		
-		CoffeeShop testShop = new CoffeeShop("testCoffeeShopName", (float) 4.0, "www.testwebaddress.com");
+		//CoffeeShop testShop = new CoffeeShop("testCoffeeShopName", (float) 4.0, "www.testwebaddress.com");
+		CoffeeShop testShop = new CoffeeShop();
 		JSONObject testObj = new JSONObject();
 		testObj.put("id", 1);
 		testObj.put("name", "testCoffeeShop");

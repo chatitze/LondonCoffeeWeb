@@ -6,10 +6,17 @@ import javax.sql.DataSource;
 
 
 
+
+
+
+
+
+
 //import org.apache.commons.dbcp.BasicDataSource;
 //import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.tomcat.dbcp.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,9 +32,14 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import com.web.londoncoffee.dao.CoffeeShopDaoImpl;
 import com.web.londoncoffee.dao.ICoffeeShopDao;
+import com.web.londoncoffee.dao.ILocationDao;
+import com.web.londoncoffee.dao.LocationDaoImpl;
 import com.web.londoncoffee.model.CoffeeShop;
+import com.web.londoncoffee.model.Location;
 import com.web.londoncoffee.service.CoffeeShopServiceImpl;
 import com.web.londoncoffee.service.ICoffeeShopService;
+import com.web.londoncoffee.service.ILocationService;
+import com.web.londoncoffee.service.LocationServiceImpl;
 /**
  * @author Chatitze Moumin
  *
@@ -84,8 +96,12 @@ public class ApplicationContextConfig {
     	LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
     	sessionBuilder.addProperties(getHibernateProperties());
     	sessionBuilder.addAnnotatedClasses(CoffeeShop.class);
+    	sessionBuilder.addAnnotatedClasses(Location.class);
     	return sessionBuilder.buildSessionFactory();
     }
+    
+   // Mappings mappings = configuration.createMappings();
+   // mappings.addClass(PersistentClass instance);
     /*
     //3
     @Bean
@@ -129,5 +145,17 @@ public class ApplicationContextConfig {
     @Bean(name = "coffeeShopService")
     public ICoffeeShopService getCoffeeShopservice(ICoffeeShopDao coffeeShopDao) {
     	return new CoffeeShopServiceImpl(coffeeShopDao);
+    }
+    
+    @Autowired
+    @Bean(name = "locationDao")
+    public ILocationDao getLocationDao(SessionFactory sessionFactory) {
+    	return new LocationDaoImpl(sessionFactory);
+    }
+    
+    @Autowired
+    @Bean(name = "locationService")
+    public ILocationService getLocationService(ILocationDao locationDao) {
+    	return new LocationServiceImpl(locationDao);
     }
 }

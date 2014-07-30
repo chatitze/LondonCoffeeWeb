@@ -11,6 +11,8 @@
 			<td> ${coffeeShops.name} </td>
 			<td> ${coffeeShops.rating} </td>
 			<td> ${coffeeShops.webAddress} </td>
+			<td> ${coffeeShops.location} </td>
+			<td> ${coffeeShops.location.city} </td>
 		</tr>
 	</c:forEach>
 </table>
