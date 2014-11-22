@@ -1,7 +1,5 @@
 package com.web.londoncoffee.controller;
 
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
